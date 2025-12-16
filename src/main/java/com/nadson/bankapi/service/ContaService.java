@@ -3,6 +3,7 @@ package com.nadson.bankapi.service;
 import com.nadson.bankapi.model.Conta;
 import com.nadson.bankapi.model.Usuario;
 import com.nadson.bankapi.repository.ContaRepository;
+import com.nadson.bankapi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,15 +12,22 @@ import java.util.UUID;
 @Service
 public class ContaService{
     private final ContaRepository contaRepository;
-    public ContaService(ContaRepository contaRepository) {
+    private final UsuarioRepository usuarioRepository;
+
+    public ContaService(ContaRepository contaRepository, UsuarioRepository usuarioRepository) {
         this.contaRepository = contaRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
-    public Conta criarConta(Usuario usuario){
-        Conta conta = new Conta();
-        conta.setNumeroConta(gerarNumeroConta());
-        conta.setUsuario(usuario);
-        return contaRepository.save(conta);
+    public Optional<Conta> criarConta(Long usuarioId){
+        return usuarioRepository.findById(usuarioId)
+                .map(usuario -> {
+                    Conta conta = new Conta();
+                    conta.setNumeroConta(gerarNumeroConta());
+                    conta.setUsuario(usuario);
+                    return contaRepository.save(conta);
+
+                });
     }
 
     public Optional<Conta> buscarPorId(Long id){
