@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bankapi-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bankapi
+      POSTGRES_PASSWORD: vVGO6ex1blBuOAzi
+      POSTGRES_DB: bankapi
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - bankapi_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  bankapi_data:
+
+networks:
+  app-network:
+    external: true
