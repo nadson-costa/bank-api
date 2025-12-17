@@ -12,27 +12,9 @@ services:
       - DB_NAME=bankapi
       - DB_USER=bankapi
       - DB_PASSWORD=${DB_PASSWORD}
-    depends_on:
-      - db
     networks:
-      - bankapi-network
-
-  db:
-    image: postgres:16-alpine
-    container_name: bankapi-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: bankapi
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: bankapi
-    volumes:
-      - bankapi_data:/var/lib/postgresql/data
-    networks:
-      - bankapi-network
-
-volumes:
-  bankapi_data:
+      - app-network
 
 networks:
-  bankapi-network:
-    driver: bridge
+  app-network:
+    external: true
