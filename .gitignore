@@ -19,3 +19,5 @@ application-dev.yml
 
 build/
 out/
+
+*.json
