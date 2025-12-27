@@ -44,5 +44,5 @@ API RESTful de sistema bancário desenvolvida com Spring Boot. Projeto desenvolv
 
 ## Produção
 
- - API disponível em: https://api.nadson.dev/swagger-ui.html
+ - API disponível em: https://api-bank.nadson.dev/swagger-ui.html
  - UI da aplicação: https://bank.nadson.dev/
