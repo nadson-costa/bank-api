@@ -59,7 +59,9 @@ public class TransacaoController {
                 transacao.getTipo(),
                 transacao.getValor(),
                 transacao.getContaOrigem() != null ? transacao.getContaOrigem().getId() : null,
+                transacao.getContaOrigem() != null ? transacao.getContaOrigem().getUsuario().getNome() : null,
                 transacao.getContaDestino() != null ? transacao.getContaDestino().getId() : null,
+                transacao.getContaDestino() != null ? transacao.getContaDestino().getUsuario().getNome() : null,
                 transacao.getDescricao(),
                 transacao.getCreatedAt()
         );

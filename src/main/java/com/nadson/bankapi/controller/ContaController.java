@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,6 +27,16 @@ public class ContaController {
     public ContaController(ContaService contaService, TransacaoService transacaoService) {
         this.contaService = contaService;
         this.transacaoService = transacaoService;
+    }
+
+    @GetMapping("/minha")
+    public ResponseEntity<ContaDTO> buscarMinhaConta() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return contaService.buscarPorEmail(email)
+                .map(this::toDTO)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{id}")
@@ -83,7 +94,9 @@ public class ContaController {
                 transacao.getTipo(),
                 transacao.getValor(),
                 transacao.getContaOrigem() != null ? transacao.getContaOrigem().getId() : null,
+                transacao.getContaOrigem() != null ? transacao.getContaOrigem().getUsuario().getNome() : null,
                 transacao.getContaDestino() != null ? transacao.getContaDestino().getId() : null,
+                transacao.getContaDestino() != null ? transacao.getContaDestino().getUsuario().getNome() : null,
                 transacao.getDescricao(),
                 transacao.getCreatedAt()
 

@@ -30,6 +30,11 @@ public class ContaService{
                 });
     }
 
+    public Optional<Conta> buscarPorEmail(String email){
+        return usuarioRepository.findByEmail(email)
+                .flatMap(usuario -> contaRepository.findByUsuarioId(usuario.getId()));
+    }
+
     public Optional<Conta> buscarPorId(Long id){
         return contaRepository.findById(id);
     }

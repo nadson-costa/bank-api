@@ -10,7 +10,9 @@ public record TransacaoDTO(
         TipoTransacao tipo,
         BigDecimal valor,
         Long contaOrigemId,
+        String nomeOrigem,
         Long contaDestinoId,
+        String nomeDestino,
         String descricao,
         LocalDateTime createdAt
 ) {
