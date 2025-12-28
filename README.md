@@ -2,6 +2,16 @@
 
 API RESTful de sistema bancário desenvolvida com Spring Boot. Projeto desenvolvido com finalidade de aprofundar o estudo em Java e Spring Boot
 
+## Demonstração da aplicação
+
+
+https://github.com/user-attachments/assets/4f3362af-8d09-480c-9a51-cf829da87888
+
+## Produção
+
+ - API disponível em: https://api-bank.nadson.dev/swagger-ui.html
+ - UI da aplicação: https://bank.nadson.dev/
+
 ## Tecnologias
 
 - Java 21
@@ -42,7 +52,4 @@ API RESTful de sistema bancário desenvolvida com Spring Boot. Projeto desenvolv
 | POST | `/api/transacoes/transferencia` | Realizar transferência |
 
 
-## Produção
 
- - API disponível em: https://api-bank.nadson.dev/swagger-ui.html
- - UI da aplicação: https://bank.nadson.dev/
